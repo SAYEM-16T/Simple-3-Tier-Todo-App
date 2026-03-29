@@ -1,0 +1,13 @@
+services:
+  frontend:
+    build:
+      context: ../../../../frontend
+      dockerfile: Dockerfile.ec2
+      args:
+        VITE_API_BASE_URL: /api
+    container_name: todo_frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
